@@ -42,4 +42,9 @@ class DataInit {
         }
 
     }
+
+    static void addData(int serial, int title, int n1, int n2, int n3, int n4, int n5) {
+        Kjh kjh = new Kjh(serial, title, n1, n2, n3, n4, n5);
+        kjh.save();
+    }
 }
