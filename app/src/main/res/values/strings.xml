@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Cp5</string>
+    <string name="main_开奖数据">开奖数据</string>
+    <string name="main_分析">分析</string>
 </resources>
