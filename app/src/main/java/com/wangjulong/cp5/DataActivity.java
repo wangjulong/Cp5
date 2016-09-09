@@ -3,18 +3,19 @@ package com.wangjulong.cp5;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataActivity extends AppCompatActivity {
-    TextView textView;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class DataActivity extends AppCompatActivity {
         MyAsynctask task = new MyAsynctask();
         String strUrl = "http://trend.caipiao.163.com/ln11xuan5/?periodNumber=100";
         task.execute(strUrl);
+
+        //显示数据
+        this.dataListView();
     }
 
     /**
@@ -55,17 +59,8 @@ public class DataActivity extends AppCompatActivity {
      * @param view Placeholder
      */
     public void dataView(View view) {
-        // 显示数据 数据库-->textView
-        textView = (TextView) findViewById(R.id.dataViews);
-        List<Kjh> one = Kjh.listAll(Kjh.class);
-        String t = "";
-
-        for (Kjh temp : one) {
-            t = t + temp.serial + " " + temp.title + " " + temp.n1 + " " + temp.n2 + " " + temp.n3 + " " + temp.n4 + " " + temp.n5 + "\n";
-        }
-
-        textView.setText(t);
-        textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+        //显示数据
+        this.dataListView();
     }
 
     /**
@@ -90,10 +85,15 @@ public class DataActivity extends AppCompatActivity {
         int n4 = Integer.parseInt(String.valueOf(editText4 != null ? editText4.getText() : -1));
         int n5 = Integer.parseInt(String.valueOf(editText5 != null ? editText5.getText() : -1));
 
-        DataInit.addData(serial,title,n1,n2,n3,n4,n5);
+        DataInit.addData(serial, title, n1, n2, n3, n4, n5);
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.manualLinearLayout);
-        assert linearLayout != null;
-        linearLayout.setVisibility(View.GONE);
+
+        if (linearLayout != null) {
+            linearLayout.setVisibility(View.GONE);
+        }
+
+        //显示数据
+        this.dataListView();
     }
 
 
@@ -120,19 +120,40 @@ public class DataActivity extends AppCompatActivity {
 
             // 筛选数据并更新数据库文件
             DataInit.dataSave(s);
-
-            // 显示数据 数据库-->textView
-            textView = (TextView) findViewById(R.id.dataViews);
-            List<Kjh> one = Kjh.listAll(Kjh.class);
-            String t = "";
-
-            for (Kjh temp : one) {
-                t = t + temp.serial + " " + temp.title + " " + temp.n1 + " " + temp.n2 + " " + temp.n3 + " " + temp.n4 + " " + temp.n5 + "\n";
-            }
-
-            textView.setText(t);
-            textView.setMovementMethod(ScrollingMovementMethod.getInstance());
-
         }
+    }
+
+    /**
+     * 把开奖号码呈现在 ListView 中
+     */
+    private void dataListView() {
+        listView = (ListView) findViewById(R.id.listView1);
+
+        // 临时列表：存储开奖号码
+        List<Kjh> temp1 = Kjh.listAll(Kjh.class);
+
+        // 倒序的开奖号码
+        List<Kjh> kjhList = new ArrayList<>();
+
+        // 提供给 ListView 的数据源
+        List<String> stringList = new ArrayList<>();
+
+        // 开奖号码倒序排列
+        for (int i = temp1.size() - 1; i >= 0; i--) {
+            kjhList.add(temp1.get(i));
+        }
+
+        // 数据源生成
+        for (Kjh temp : kjhList) {
+            stringList.add(temp.serial + " " + temp.title + " " + temp.n1
+                    + " " + temp.n2 + " " + temp.n3 + " " + temp.n4 + " " + temp.n5);
+        }
+
+        // 新建 ArrayAdapter
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList);
+
+        // 把数据源配置给 ListView
+        listView.setAdapter(arrayAdapter);
+
     }
 }
