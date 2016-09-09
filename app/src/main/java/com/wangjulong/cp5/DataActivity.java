@@ -136,24 +136,14 @@ public class DataActivity extends AppCompatActivity {
         List<Kjh> kjhList = new ArrayList<>();
 
         // 提供给 ListView 的数据源
-        List<String> stringList = new ArrayList<>();
+//        List<String> stringList = new ArrayList<>();
 
         // 开奖号码倒序排列
         for (int i = temp1.size() - 1; i >= 0; i--) {
             kjhList.add(temp1.get(i));
         }
 
-        // 数据源生成
-        for (Kjh temp : kjhList) {
-            stringList.add(temp.serial + " " + temp.title + " " + temp.n1
-                    + " " + temp.n2 + " " + temp.n3 + " " + temp.n4 + " " + temp.n5);
-        }
-
-        // 新建 ArrayAdapter
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList);
-
-        // 把数据源配置给 ListView
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(new MyBaseAdapter(this,kjhList));
 
     }
 }
