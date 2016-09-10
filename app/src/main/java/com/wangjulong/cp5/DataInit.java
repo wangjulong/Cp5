@@ -25,6 +25,8 @@ class DataInit {
         Kjh.deleteAll(Kjh.class);
 
         // 循环字符串数组
+
+        Kjh kjh = new Kjh();
         for (String abc : arr0) {
             int serial = (int) Kjh.count(Kjh.class) + 1;
 
@@ -36,11 +38,11 @@ class DataInit {
                 n3 = Integer.parseInt(abc.substring(28, 30));
                 n4 = Integer.parseInt(abc.substring(31, 33));
                 n5 = Integer.parseInt(abc.substring(34, 36));
-                Kjh kjh = new Kjh(serial, s0, n1, n2, n3, n4, n5);
+                kjh = new Kjh(serial, s0, n1, n2, n3, n4, n5);
                 kjh.save();
             }
         }
-
+        kjh = null;
     }
 
     static void addData(int serial, int title, int n1, int n2, int n3, int n4, int n5) {

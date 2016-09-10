@@ -126,7 +126,7 @@ public class DataActivity extends AppCompatActivity {
     /**
      * 把开奖号码呈现在 ListView 中
      */
-    private void dataListView() {
+    public void dataListView() {
         listView = (ListView) findViewById(R.id.listView1);
 
         // 临时列表：存储开奖号码
