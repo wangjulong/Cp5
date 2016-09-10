@@ -21,4 +21,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DataActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * 分析按钮 跳转到分析 Activity
+     * @param view Default
+     */
+    public void dataAnalysisButton(View view) {
+
+        startActivity(new Intent(this,AnalysisActivity.class));
+    }
 }

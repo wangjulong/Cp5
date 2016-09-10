@@ -6,4 +6,8 @@
     <string name="Data_手动更新">手动更新</string>
     <string name="Data_显示数据">显示数据</string>
     <string name="确定">确定</string>
+    <string name="MainActivity_TextView">专业号码预测</string>
+    <string name="AnalysisActivity_Args1">分析基础期数参数</string>
+    <string name="AnalysisActivity_Args2">号码走势期数参数</string>
+    <string name="AnalysisActivity_Result">分析结果显示</string>
 </resources>
