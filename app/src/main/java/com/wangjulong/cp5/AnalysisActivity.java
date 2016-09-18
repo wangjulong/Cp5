@@ -19,6 +19,7 @@ public class AnalysisActivity extends AppCompatActivity {
      * @param view Default
      */
     public void analysisButton(View view) {
-
+        NumberAnalysis numberAnalysis = new NumberAnalysis();
+        numberAnalysis.analysis();
     }
 }
