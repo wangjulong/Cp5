@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.wangjulong.cp5.db.Lottery;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -16,10 +18,10 @@ import java.util.Locale;
  */
 
 class MyBaseAdapter extends BaseAdapter {
-    private List<Kjh> list;
+    private List<Lottery> list;
     private LayoutInflater mInflater;
 
-    MyBaseAdapter(Context context, List<Kjh> list) {
+    MyBaseAdapter(Context context, List<Lottery> list) {
         this.list = list;
         this.mInflater = LayoutInflater.from(context);
     }
@@ -62,14 +64,14 @@ class MyBaseAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Kjh kjh = list.get(position);
-        viewHolder.textViewSerial.setText(String.format(Locale.CHINA,"%03d", kjh.serial));
-        viewHolder.textViewTitle.setText(String.format(Locale.CHINA,"%08d",kjh.title));
-        viewHolder.textView1.setText(String.format(Locale.CHINA,"%02d",kjh.n1));
-        viewHolder.textView2.setText(String.format(Locale.CHINA,"%02d",kjh.n2));
-        viewHolder.textView3.setText(String.format(Locale.CHINA,"%02d",kjh.n3));
-        viewHolder.textView4.setText(String.format(Locale.CHINA,"%02d",kjh.n4));
-        viewHolder.textView5.setText(String.format(Locale.CHINA,"%02d",kjh.n5));
+        Lottery kjh = list.get(position);
+        viewHolder.textViewSerial.setText(String.format(Locale.CHINA, "%03d", kjh.getSerial()));
+        viewHolder.textViewTitle.setText(String.format(Locale.CHINA, "%08d", kjh.getTitle()));
+        viewHolder.textView1.setText(String.format(Locale.CHINA, "%02d", kjh.getN1()));
+        viewHolder.textView2.setText(String.format(Locale.CHINA, "%02d", kjh.getN2()));
+        viewHolder.textView3.setText(String.format(Locale.CHINA, "%02d", kjh.getN3()));
+        viewHolder.textView4.setText(String.format(Locale.CHINA, "%02d", kjh.getN4()));
+        viewHolder.textView5.setText(String.format(Locale.CHINA, "%02d", kjh.getN5()));
 
         return convertView;
 
@@ -123,14 +125,15 @@ class MyBaseAdapter extends BaseAdapter {
 //        return view;
 //        // 逗比式
     }
-    class ViewHolder {
-        public TextView textViewSerial;
-        public TextView textViewTitle;
-        public TextView textView1;
-        public TextView textView2;
-        public TextView textView3;
-        public TextView textView4;
-        public TextView textView5;
+
+    private class ViewHolder {
+        TextView textViewSerial;
+        TextView textViewTitle;
+        TextView textView1;
+        TextView textView2;
+        TextView textView3;
+        TextView textView4;
+        TextView textView5;
 
     }
 }

@@ -44,17 +44,17 @@ class NumberAnalysis {
     private void s01DataDescToTable() {
 
         // 1 从数据库获得数据并转化为数组 kjhArr(二维数组，行：开奖期数，列：序号，期号，5个号码)
-        List<Kjh> kjhList = Kjh.listAll(Kjh.class);
-        int[][] kjhArr = new int[kjhList.size()][7];
-        for (int i = 0; i < kjhList.size(); i++) {
-            kjhArr[i][0] = kjhList.get(i).serial;
-            kjhArr[i][1] = kjhList.get(i).title;
-            kjhArr[i][2] = kjhList.get(i).n1;
-            kjhArr[i][3] = kjhList.get(i).n2;
-            kjhArr[i][4] = kjhList.get(i).n3;
-            kjhArr[i][5] = kjhList.get(i).n4;
-            kjhArr[i][6] = kjhList.get(i).n5;
-        }
+//        List<Kjh> kjhList = Kjh.listAll(Kjh.class);
+//        int[][] kjhArr = new int[kjhList.size()][7];
+//        for (int i = 0; i < kjhList.size(); i++) {
+//            kjhArr[i][0] = kjhList.get(i).serial;
+//            kjhArr[i][1] = kjhList.get(i).title;
+//            kjhArr[i][2] = kjhList.get(i).n1;
+//            kjhArr[i][3] = kjhList.get(i).n2;
+//            kjhArr[i][4] = kjhList.get(i).n3;
+//            kjhArr[i][5] = kjhList.get(i).n4;
+//            kjhArr[i][6] = kjhList.get(i).n5;
+//        }
 
 
 
