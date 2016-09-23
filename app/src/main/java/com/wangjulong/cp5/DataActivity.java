@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.j256.ormlite.dao.Dao;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataActivity extends OrmLiteBaseActivity<DatabaseHelper> {
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class DataActivity extends OrmLiteBaseActivity<DatabaseHelper> {
         MyAsynctask task = new MyAsynctask();
         String strUrl = "http://trend.caipiao.163.com/ln11xuan5/?periodNumber=100";
         task.execute(strUrl);
+        Toast.makeText(this, "数据更新完成！！！", Toast.LENGTH_LONG).show();
 
         //显示数据
         this.dataListView();
@@ -170,11 +171,11 @@ public class DataActivity extends OrmLiteBaseActivity<DatabaseHelper> {
      * 把开奖号码呈现在 ListView 中
      */
     public void dataListView() throws SQLException {
-        listView = (ListView) findViewById(R.id.listView1);
+        ListView listView = (ListView) findViewById(R.id.listView1);
 
         // 临时列表：存储开奖号码
 
-        Dao<Lottery,Integer> lotteryIntegerDao = getHelper().getDao();
+        Dao<Lottery, Integer> lotteryIntegerDao = getHelper().getDao();
 
         List<Lottery> temp1 = lotteryIntegerDao.queryForAll();
 
