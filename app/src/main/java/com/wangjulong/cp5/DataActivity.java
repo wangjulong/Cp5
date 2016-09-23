@@ -17,6 +17,7 @@ import com.wangjulong.cp5.db.Lottery;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataActivity extends OrmLiteBaseActivity<DatabaseHelper> {
@@ -128,6 +129,8 @@ public class DataActivity extends OrmLiteBaseActivity<DatabaseHelper> {
         @Override
         protected void onPostExecute(String s) {
 
+            int[] temp = new int[5];
+
             // 筛选数据并更新数据库文件
             Dao<Lottery, Integer> lotteryDao = null;
             try {
@@ -156,6 +159,18 @@ public class DataActivity extends OrmLiteBaseActivity<DatabaseHelper> {
                         n3 = Integer.parseInt(abc.substring(28, 30));
                         n4 = Integer.parseInt(abc.substring(31, 33));
                         n5 = Integer.parseInt(abc.substring(34, 36));
+
+                        temp[0] = n1;
+                        temp[1] = n2;
+                        temp[2] = n3;
+                        temp[3] = n4;
+                        temp[4] = n5;
+                        Arrays.sort(temp);
+                        n1 = temp[0];
+                        n2 = temp[1];
+                        n3 = temp[2];
+                        n4 = temp[3];
+                        n5 = temp[4];
 
                         Lottery lottery = new Lottery(serial, s0, n1, n2, n3, n4, n5);
                         lotteryDao.create(lottery);
