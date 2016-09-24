@@ -1,9 +1,5 @@
-package com.wangjulong.cp5;
+package com.wangjulong.cp5.analysis;
 
-import com.wangjulong.cp5.analysis.LotteryAnalysisStep01Interface;
-import com.wangjulong.cp5.analysis.Stage01DatabaseInterface;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +8,7 @@ import java.util.Map;
  * Created by Administrator on 2016/9/18.
  */
 
-class NumberAnalysis {
+public class NumberAnalysis {
 
     private LotteryAnalysisStep01Interface lotteryAnalysisStep01Interface;
     private Stage01DatabaseInterface stage01DatabaseInterface;
@@ -31,20 +27,32 @@ class NumberAnalysis {
     /**
      * 在构造函数中初始化成员变量
      */
-    NumberAnalysis(int[][] arr,int baseNumber,int analysisNumber) {
-
+    public NumberAnalysis(int[][] arrs, int baseNumbers, int analysisNumbers) {
+        arr = arrs;
+        baseNumber = baseNumbers;
+        analysisNumber = analysisNumbers;
     }
 
     /**
      * 入口方法，管理分析流程的方法
      * 本方法调用类的其他方法处理分析数据
      */
-    void analysis() {
-        // 第一步：计算得到第一阶段的计算结果
-        int[][] temp = lotteryAnalysisStep01Interface.generalDataStage01(arr,baseNumber,analysisNumber);
+    public void analysis() {
 
-        // 存入数据库
-        stage01DatabaseInterface.stage01IntoDatabase(temp);
+        // 测试数据
+        for (int[] anArr : arr) {
+            System.out.print(anArr[0] + " ");
+            System.out.print(anArr[1] + " ");
+            System.out.print(anArr[2] + " ");
+            System.out.print(anArr[3] + " ");
+            System.out.print(anArr[4] + " ");
+            System.out.print(anArr[5] + " ");
+            System.out.println(anArr[6]);
+        }
+
+        // 第一步：计算得到第一阶段的计算结果
+//        int[][] temp = lotteryAnalysisStep01Interface.generalDataStage01(arr, baseNumber, analysisNumber);
+
 
     }
 

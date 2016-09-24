@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.j256.ormlite.dao.Dao;
+import com.wangjulong.cp5.analysis.NumberAnalysis;
 import com.wangjulong.cp5.db.DatabaseHelper;
 import com.wangjulong.cp5.db.Lottery;
 
@@ -17,7 +18,6 @@ public class AnalysisActivity extends OrmLiteBaseActivity<DatabaseHelper> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
-
 
     }
 
@@ -40,18 +40,9 @@ public class AnalysisActivity extends OrmLiteBaseActivity<DatabaseHelper> {
             allData[i][4] = lotteries.get(i).getN3();
             allData[i][5] = lotteries.get(i).getN4();
             allData[i][6] = lotteries.get(i).getN5();
-
-            System.out.print(allData[i][0] + " ");
-            System.out.print(allData[i][1] + " ");
-            System.out.print(allData[i][2] + " ");
-            System.out.print(allData[i][3] + " ");
-            System.out.print(allData[i][4] + " ");
-            System.out.print(allData[i][5] + " ");
-            System.out.println(allData[i][6]);
         }
 
-
-//        NumberAnalysis numberAnalysis = new NumberAnalysis(allData,10,80);
-//        numberAnalysis.analysis();
+        NumberAnalysis numberAnalysis = new NumberAnalysis(allData,10,80);
+        numberAnalysis.analysis();
     }
 }
